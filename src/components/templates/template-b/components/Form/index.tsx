@@ -45,6 +45,7 @@ const CheckoutForm = ({ info }: Props) => {
     productStickyId: `${info.product.stickyId2}`,
     productImage: `${info.product.image1}`
   });  
+  
 
   const initialCustomerInfo: CustomerInfoType = {
     sessionId: sessionId || "",
