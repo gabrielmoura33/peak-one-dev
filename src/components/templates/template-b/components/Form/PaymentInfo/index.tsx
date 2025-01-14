@@ -14,13 +14,14 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
     <div className="w-full flex flex-col mt-10">
       <SectionTitle 
         icon={IconType.PAYMENT}
-        title="Informações de Pagamento"
-        subtitle="Por favor, preencha os dados do cartão"
+        title="Payment Information"
+        subtitle="Safe & Secure Checkout"
       />
       
       <div className="flex flex-col mt-6">
         <TextInput
-          label="Número do Cartão"
+          label="Card Number"
+          placeholder="Credit Card Number"
           name="cardNumber"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -60,7 +61,8 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
             touched={formik.touched.expiryYear}
             error={formik.errors.expiryYear}
           />
-
+        </div>
+        <div className="w-1/2">
           <TextInput
             label="CVV"
             name="cvv"
@@ -69,6 +71,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
             value={formik.values.cvv}
             error={formik.errors.cvv}
             touched={formik.touched.cvv}
+            placeholder="CVV"
           />
         </div>
       </div>

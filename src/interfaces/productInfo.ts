@@ -6,4 +6,5 @@ export type ProductInfoType = {
   productShippingId: string;
   productOfferId: string;
   productStickyId: string;
+  productImage?: string;
 };

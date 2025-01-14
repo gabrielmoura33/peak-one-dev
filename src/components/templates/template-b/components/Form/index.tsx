@@ -15,7 +15,6 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
 import { delay } from "@/utils/delay";
 import PromotionTimer from "../PromotionTimer";
-import SectionTitle, { IconType } from "../SectionTitle";
 import QuantityInfo from "./QuantityInfo";
 import CustomerInfo from "./CustomerInfo";
 import ShippingInfo from "./ShippingInfo";
@@ -44,8 +43,8 @@ const CheckoutForm = ({ info }: Props) => {
     productShippingId: `${info.product.shippingId2}`,
     productOfferId: `${info.product.offerId2}`,
     productStickyId: `${info.product.stickyId2}`,
-  });
-
+    productImage: `${info.product.image1}`
+  });  
 
   const initialCustomerInfo: CustomerInfoType = {
     sessionId: sessionId || "",
@@ -404,23 +403,29 @@ const CheckoutForm = ({ info }: Props) => {
       product={product}
     />
     <div className="w-[53%] flex flex-col float-left relative pt-[3.125rem] pr-[3.125rem] pb-[4.375rem] pl-0 bg-white">
-      <PromotionTimer />
-      <div className="flex flex-col mt-10">
-        <QuantityInfo product={product} info={info} setProduct={() => {}} couponActive country="US"/>
-        <CustomerInfo formik={formik} country="US" />
-        <ShippingInfo formik={formik} />
-        <PaymentInfo formik={formik} />
+        <PromotionTimer />
+        <div className="flex flex-col mt-10">
+          <QuantityInfo
+            product={product}
+            setProduct={setProduct}
+            couponActive={customerInfo.couponActive}
+            country={country}
+            productInfo={info.product}
+          />
+          <CustomerInfo formik={formik} country="US" />
+          <ShippingInfo formik={formik} />
+          <PaymentInfo formik={formik} />
 
-        <button
+          <button
             className="flex items-center justify-center w-full h-[75px] bg-[#00af3a] text-[1.75rem] text-white border border-[#77d496] rounded-[5px] font-inter font-bold shadow-[1px_1px_#00a04a] mt-5 cursor-pointer outline-none px-6 hover:bg-[#009932] hover:shadow-[2px_2px_#008b2f] transition-all duration-200"
             type="button"
           >
             <span className="mr-4">Complete Checkout</span>
             <img src="/images/btn-arw.png" alt="Arrow Icon" className="w-[24px] h-[24px]" />
           </button>
-          
-          <div className="mt-10 w-full">
-            <img src="/images/guaranty-seal.jpg" alt="" className="w-full h-auto" />
+            
+            <div className="mt-10 w-full">
+              <img src="/images/guaranty-seal.jpg" alt="" className="w-full h-auto" />
           </div>
       </div>
     </div>

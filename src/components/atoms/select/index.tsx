@@ -9,7 +9,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 export const SelectInput = ({ label, options, className, error, touched, ...props }: SelectProps) => {
   return (
-    <div className="mb-4">
+    <div className="mb-4 w-full">
       {label && (
         <label className="block text-[1rem] leading-[1rem] text-black mb-[0.625rem]">
           {label}

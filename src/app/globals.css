@@ -164,6 +164,18 @@
   animation: checkmark 0.5s 0.5s ease forwards;
 }
 
+.custom-strike {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: calc(100% + 10px);
+  margin-left: -5px;
+  border-top: 2px solid #f00;
+  transform: rotate(-10deg);
+  -webkit-transform: rotate(-10deg);
+}
+
 @keyframes checkmark {
   0% {
     stroke-dashoffset: 30;

@@ -14,13 +14,13 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({
     <div className="w-full flex flex-col mt-10">
       <SectionTitle 
         icon={IconType.SHIP}
-        title="Informações de Entrega"
-        subtitle="Por favor, preencha os dados de entrega"
+        title="Shipping Information"
+        subtitle="Where do we send your Hearing aid?"
       />
       
       <div className="flex flex-col mt-6">
         <SelectInput
-          label="País"
+          label="Country"
           name="shippingCountry"
           options={[
             { value: 'BR', label: 'Brasil' },
@@ -35,8 +35,9 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({
         />
 
         <TextInput
-          label="Endereço"
+          label="Delivery Address"
           name="shippingAddress"
+          placeholder="Address"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.shippingAddress}
@@ -45,7 +46,7 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({
         />
 
         <TextInput
-          label="Complemento"
+          placeholder="Apartment, suit, etc.(optional)"
           name="shippingComplement"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -55,7 +56,8 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({
         />
 
         <TextInput
-          label="Cidade"
+          label="City"
+          placeholder="City"
           name="shippingCity"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -64,32 +66,35 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({
           touched={formik.touched.shippingCity}
         />
 
-        <SelectInput
-          label="Estado"
-          name="shippingState"
-          options={[
-            { value: 'SP', label: 'São Paulo' },
-            { value: 'RJ', label: 'Rio de Janeiro' },
-            { value: 'MG', label: 'Minas Gerais' },
-            { value: 'ES', label: 'Espírito Santo' },
-            // Adicione outros estados conforme necessário
-          ]}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.shippingState}
-          touched={formik.touched.shippingState}
-          error={formik.errors.shippingState}
-        />
+        <div className="flex w-full gap-10">
+          <SelectInput
+            label="State"
+            name="shippingState"
+            options={[
+              { value: '-', label: 'Select State' },
+              { value: 'SP', label: 'São Paulo' },
+              { value: 'RJ', label: 'Rio de Janeiro' },
+              { value: 'MG', label: 'Minas Gerais' },
+              { value: 'ES', label: 'Espírito Santo' },
+            ]}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.shippingState}
+            touched={formik.touched.shippingState}
+            error={formik.errors.shippingState}
+          />
 
-        <TextInput
-          label="CEP"
-          name="shippingZipCode"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.shippingZipCode}
-          error={formik.errors.shippingZipCode}
-          touched={formik.touched.shippingZipCode}
-        />
+          <TextInput
+            label="Zip Code"
+            placeholder="Zip Code"
+            name="shippingZipCode"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.shippingZipCode}
+            error={formik.errors.shippingZipCode}
+            touched={formik.touched.shippingZipCode}
+          />
+        </div>
       </div>
     </div>
   );

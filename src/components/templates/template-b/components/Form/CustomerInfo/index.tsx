@@ -1,7 +1,6 @@
 import React from 'react';
 import SectionTitle, { IconType } from '../../SectionTitle';
 import { TextInput } from '../../../../../atoms/input';
-import { SelectInput } from '../../../../../atoms/select'; // Certifique-se de importar o SelectInput
 
 interface CustomerInfoProps {
   formik: any;
@@ -16,25 +15,39 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
     <div className="w-full flex flex-col mt-10">
       <SectionTitle 
         icon={IconType.USER}
-        title="Informações do Cliente"
-        subtitle="Por favor, preencha seus dados pessoais"
+        title="Customer Information"
+        subtitle="Order Confirmation Details Will Be Sent Here"
       />
       
       <div className="flex flex-col mt-6">
-        <TextInput
-          label="Nome Completo"
-          name="fullName"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.fullName}
-          error={formik.errors.fullName}
-          touched={formik.touched.fullName}
-        />
+        <div className="flex gap-10 w-full">
+          <TextInput
+            label="First Name"
+            placeholder="First Name"
+            name="firstName"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.firstName}
+            error={formik.errors.firstName}
+            touched={formik.touched.firstName}
+          />
+          <TextInput
+            label="Last Name"
+            placeholder="Last Name"
+            name="lastName"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.lastName}
+            error={formik.errors.lastName}
+            touched={formik.touched.lastName}
+          />
+        </div>
 
         <TextInput
-          label="Email"
+          label="Email Address"
           type="email"
           name="email"
+          placeholder="Email Address"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -43,39 +56,15 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({
         />
 
         <TextInput
-          label="Telefone"
+          label="Phone Number"
           type="tel"
           name="phone"
+          placeholder="Phone Number"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.phone}
           error={formik.errors.phone}
           touched={formik.touched.phone}
-        />
-
-        <TextInput
-          label="CPF"
-          name="cpf"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.cpf}
-          error={formik.errors.cpf}
-          touched={formik.touched.cpf}
-        />
-
-        <SelectInput
-          label="País"
-          name="country"
-          options={[
-            { value: 'BR', label: 'Brasil' },
-            { value: 'US', label: 'Estados Unidos' },
-            { value: 'CA', label: 'Canadá' },
-          ]}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.country}
-          touched={formik.touched.country}
-          error={formik.errors.country}
         />
       </div>
     </div>
