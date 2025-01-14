@@ -1,10 +1,10 @@
 import React from "react";
-import CheckoutHeader from "./(components)/checkout/checkout-header";
-import CheckoutForm from "./(components)/checkout/checkout-form";
-import Footer from "./(components)/checkout/checkout-footer";
+import CheckoutHeader from "./components/checkout/checkout-header";
+import CheckoutForm from "./components/checkout/checkout-form";
+import Footer from "./components/checkout/checkout-footer";
 import { CheckoutPageType } from "@/interfaces/checkoutPage";
 import FunnelFluxScripts from "@/lib/funnel-flux-scripts";
-import CheckoutClickId from "./(components)/checkout/checkout-click-id";
+import CheckoutClickId from "./components/checkout/checkout-click-id";
 
 type Props = {
   info: CheckoutPageType;

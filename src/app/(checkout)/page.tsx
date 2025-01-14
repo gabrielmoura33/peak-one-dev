@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckoutPageType } from "@/interfaces/checkoutPage";
-import FirstTemplatePage from "../(template-a)/page";
-import SecondTemplatePage from "../(template-b)/page";
+import FirstTemplatePage from "../../components/templates/template-a";
+import SecondTemplatePage from "../../components/templates/template-b";
 
 type Props = {
   info: CheckoutPageType;
@@ -39,7 +39,7 @@ const CheckoutPage = ({ info }: Props) => {
 
     return selectedTemplate;
   };
-  
+
   return renderTemplate(info.template, info);
 };
 
