@@ -16,11 +16,12 @@ import CheckoutCouponPop from "./checkout-coupon-pop";
 import PaypalPop from "./checkout-paypal-pop";
 import { delay } from "@/utils/delay";
 import { encryptCreditCard } from "@/utils/encryptUtils";
-import HandleSessionStart from "./checkout-handle-session-start";
+
 import { sendGAEvent } from "@next/third-parties/google";
 import { createJimmyKey } from "@/utils/jimmyKeyUtils";
 import { emergencyStartSession } from "@/utils/emergencySessionStart";
 import { useTracking } from "@/context//TrackingContext";
+import HandleSessionStart from "@/components/atoms/checkout-handle-session-start";
 
 type Props = {
   info: CheckoutPageType;
