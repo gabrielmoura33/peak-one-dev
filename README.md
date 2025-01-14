@@ -1,113 +1,90 @@
 # 4am Media - External Project
 
-The goal for this project is to create a "Template 2" for our checkout portal.
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D16-brightgreen)](https://nodejs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-13.4-blue)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0-blue)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**Current Template 1** - [https://clean.buysplashcleaner.com/checkout](https://clean.buysplashcleaner.com/checkout)
+Este é um projeto desenvolvido em **Next.js**, utilizando **TypeScript** e **Tailwind CSS**, para criar um **Template 2** do portal de checkout.
 
-**_Desired Template 2_** - [https://www.oriclehearing.com/hear/checkout.php](https://www.oriclehearing.com/hear/checkout.php)
+## Objetivo
 
-To speed up this project, do not worry about the sidebar or embedded upsells. **Refer to [this screenshot](https://i.imgur.com/P7OQBn6.jpeg).**
+Reproduzir um template similar à página de checkout da [Oricle Hearing](https://www.oriclehearing.com/hear/checkout.php), com conteúdo dinâmico sendo referenciado a partir de arquivos Markdown. O projeto suporta múltiplos templates e utiliza uma arquitetura modular e escalável.
 
-## This is a Next.js + Typescript + Tailwind CSS project refrencing Markdown files.
+### Template Atual (Template 1)
 
-This build is designed to work across multiple funnels.
+[https://clean.buysplashcleaner.com/checkout](https://clean.buysplashcleaner.com/checkout)
 
-Dynamic content (product specific content..) and image links are stored in markdown files at the root - `/_checkout/splash-foam-checkout.md`.
+### Template Desejado (Template 2)
 
-Home page `/src/app/page.tsx` reads markdown content and passes it to the `CheckoutPage` component - `/src/app/_components/checkout-page.tsx`.
+[https://www.oriclehearing.com/hear/checkout.php](https://www.oriclehearing.com/hear/checkout.php)
 
-`CheckoutPage` renders the correct template based on the `info.template` field.
+## Estrutura do Projeto
 
-## Goals
+- **Conteúdo Dinâmico**: Armazenado em arquivos Markdown na pasta raiz (exemplo: `/_checkout/splash-foam-checkout.md`).
+- **Página Inicial**: O arquivo `/src/app/page.tsx` lê o conteúdo Markdown e o repassa para o componente `CheckoutPage`.
+- **Renderização do Template**: O componente `CheckoutPage` (em `/src/app/_components/checkout-page.tsx`) escolhe o template correto com base no campo `info.template` especificado no arquivo Markdown.
 
-Create a templatized version of the Oricle Hearing Checkout page but refrencing the content from `splash-foam-checkout.md`
+## Recursos Utilizados
 
-I should be able to swtich from template 1 to template 2 by updating the `template` field in the markdown file and refreshing the page.
+- **Next.js**: Framework para aplicações React.
+- **TypeScript**: Superset de JavaScript para tipagem estática.
+- **Tailwind CSS**: Framework de CSS utilitário.
+- **Markdown**: Conteúdo dinâmico em arquivos `.md`.
 
-## Bonus Goals
+## Como Rodar o Projeto
 
-Stick as closely as possible to my current style.
+### Pré-requisitos
 
-Keep file structure organized
+- [Node.js](https://nodejs.org/) (v16 ou superior)
+- [Yarn](https://yarnpkg.com/) instalado globalmente
 
-Keep types organized if modifying or adding fields
+### Passos
 
-**For any questions or concerns, please email jimmy@fourammedia.com**
+1. **Clone o Repositório**
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd <NOME_DA_PASTA_DO_REPOSITORIO>
+   ```
 
-## To Get Started
+2. **Instale as Dependências**
+   ```bash
+   yarn install
+   ```
 
-Clone the repo to your local machine then
+3. **Execute o Ambiente de Desenvolvimento**
+   ```bash
+   yarn dev
+   ```
 
-_Install packages locally_
+4. **Acesse no Navegador**
+   Abra [http://localhost:3000](http://localhost:3000) para visualizar o projeto.
 
-> `yarn install`
+### Como Alternar Entre Templates
 
-_run local dev environment_
+1. Edite o arquivo Markdown correspondente, por exemplo: `/_checkout/splash-foam-checkout.md`.
+2. Atualize o campo `template` para o template desejado (e.g., `template: 1` ou `template: 2`).
+3. Salve o arquivo e recarregue a página no navegador.
 
-> `yarn run dev`
+## Estilo de Código
 
-# Vercel Info
+Manter a organização dos arquivos, bem como a consistência nos estilos e tipos.
 
-# A statically generated blog example using Next.js, Markdown, and TypeScript
+- **Organização dos Tipos**: Tipos devem ser claros e reutilizáveis.
+- **Estrutura de Arquivos**: Componentes e arquivos devem ser bem organizados para facilitar a manutenção.
 
-This is the existing [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) plus TypeScript.
+## Suporte
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates) feature using Markdown files as the data source.
+Em caso de dúvidas ou problemas, entre em contato com:
 
-The blog posts are stored in `/_posts` as Markdown files with front matter support. Adding a new Markdown file in there will create a new blog post.
+**E-mail**: gabrielmourajs@gmail.com
 
-To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) and [`remark-html`](https://github.com/remarkjs/remark-html) to convert the Markdown files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and also sent in props to the page.
+---
 
-## Demo
+### Referências
 
-[https://next-blog-starter.vercel.app/](https://next-blog-starter.vercel.app/)
+- [Documentação do Next.js](https://nextjs.org/docs)
+- [Documentação do Tailwind CSS](https://tailwindcss.com/docs)
+- [Gray-Matter](https://github.com/jonschlinkert/gray-matter) para manipulação de metadados.
+- [Remark](https://github.com/remarkjs/remark) para conversão de Markdown para HTML.
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/blog-starter)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/blog-starter&project-name=blog-starter&repository-name=blog-starter)
-
-### Related examples
-
-- [WordPress](/examples/cms-wordpress)
-- [DatoCMS](/examples/cms-datocms)
-- [Sanity](/examples/cms-sanity)
-- [TakeShape](/examples/cms-takeshape)
-- [Prismic](/examples/cms-prismic)
-- [Contentful](/examples/cms-contentful)
-- [Strapi](/examples/cms-strapi)
-- [Agility CMS](/examples/cms-agilitycms)
-- [Cosmic](/examples/cms-cosmic)
-- [ButterCMS](/examples/cms-buttercms)
-- [Storyblok](/examples/cms-storyblok)
-- [GraphCMS](/examples/cms-graphcms)
-- [Kontent](/examples/cms-kontent)
-- [Umbraco Heartcore](/examples/cms-umbraco-heartcore)
-- [Builder.io](/examples/cms-builder-io)
-- [TinaCMS](/examples/cms-tina/)
-- [Enterspeed](/examples/cms-enterspeed)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example blog-starter blog-starter-app
-```
-
-```bash
-yarn create next-app --example blog-starter blog-starter-app
-```
-
-```bash
-pnpm create next-app --example blog-starter blog-starter-app
-```
-
-Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-# Notes
-
-`blog-starter` uses [Tailwind CSS](https://tailwindcss.com) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3).
