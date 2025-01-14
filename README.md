@@ -8,7 +8,6 @@
 Este é um projeto desenvolvido em **Next.js**, utilizando **TypeScript** e **Tailwind CSS**, para criar um **Template 2** do portal de checkout.
 
 ## Objetivo
-
 Reproduzir um template similar à página de checkout da [Oricle Hearing](https://www.oriclehearing.com/hear/checkout.php), com conteúdo dinâmico sendo referenciado a partir de arquivos Markdown. O projeto suporta múltiplos templates e utiliza uma arquitetura modular e escalável.
 
 ### Template Atual (Template 1)
