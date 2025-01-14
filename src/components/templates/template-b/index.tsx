@@ -1,5 +1,6 @@
 import { CheckoutPageType } from "@/interfaces/checkoutPage";
 import React from "react";
+import Header from "./components/header";
 
 type Props = {
   info: CheckoutPageType;
@@ -7,8 +8,8 @@ type Props = {
 
 const SecondTemplatePage = ({ info }: Props) => {
   return (
-    <div className="flex flex-col items-center relative">
-      <h1>Hello World</h1>
+    <div className="flex flex-col items-center relative ">
+      <Header />
     </div>
   );
 };

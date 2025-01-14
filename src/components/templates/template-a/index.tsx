@@ -11,7 +11,6 @@ type Props = {
 };
 
 const FirstTemplatePage = ({ info }: Props) => {
-
   return (
     <div className="flex flex-col items-center relative">
       <CheckoutHeader info={info} />
