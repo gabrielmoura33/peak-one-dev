@@ -1,9 +1,10 @@
 import { CheckoutPageType } from "@/interfaces/checkoutPage";
 import React from "react";
-import Header from "./components/Header";
+
 import Form from "./components/Form"
 import Summary from "./components/Summary";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 type Props = {
   info: CheckoutPageType;
 };

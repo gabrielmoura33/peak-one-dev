@@ -9,6 +9,7 @@ const baseCheckout = "splash-foam-checkout";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
+
 export function generateMetadata(): Metadata {
   const info = getCheckoutBySlug(baseCheckout);
 

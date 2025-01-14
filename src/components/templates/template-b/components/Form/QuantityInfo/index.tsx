@@ -13,16 +13,14 @@ interface QuantityInfoProps {
 
 const QuantityInfo: React.FC<QuantityInfoProps> = ({
   product,
-  setProduct,
-  couponActive,
-  country,
+  setProduct,  
   productInfo,
 }) => {
   // Gerar dinamicamente as opções de produtos
   const productOptions = Object.keys(productInfo)
-    .filter((key) => key.startsWith("price")) // Filtrar chaves relacionadas aos preços
+    .filter((key) => key.startsWith("price"))
     .map((key, index) => {
-      const suffix = key.replace("price", ""); // Extrair o sufixo (1, 2, 3, 4)
+      const suffix = key.replace("price", "");
       return {
         id: suffix,
         name: `${productInfo[`qty${suffix}`]} Unidade(s)`,
@@ -37,7 +35,7 @@ const QuantityInfo: React.FC<QuantityInfoProps> = ({
       };
     });
 
-  const handleProductSelection = (selectedQuantity: number) => {
+  const handleProductSelection = (selectedQuantity: number) => {    
     const selectedOption = productOptions.find(
       (option) => option.quantity === selectedQuantity
     );
