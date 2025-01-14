@@ -1,68 +1,36 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CheckoutPageType } from "@/interfaces/checkoutPage";
-import { useRouter } from "next/navigation";
-import { useSession } from "@/context/SessionContext";
+import { useTracking } from "@/context/TrackingContext";
+import HandleSessionStart from "@/components/atoms/checkout-handle-session-start";
+import { ProductInfoType } from "@/interfaces/productInfo";
+import { createJimmyKey } from "@/utils/jimmyKeyUtils";
+import { CustomerInfoType } from "@/interfaces/customerInfo";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { ProductInfoType } from "@/interfaces/productInfo";
-import { CustomerInfoType } from "@/interfaces/customerInfo";
-import DiscountBar from "./checkout-discount-bar";
-import QuantitySelector from "./checkout-quantity-selector";
-import CustomerInfo from "./checkout-customer-info";
-import PaymentOptions from "./checkout-payment-options";
-import MobilePaymentOptions from "./checkout-mobile-payment-options";
-import CheckoutCouponPop from "./checkout-coupon-pop";
-import PaypalPop from "./checkout-paypal-pop";
-import { delay } from "@/utils/delay";
-import { encryptCreditCard } from "@/utils/encryptUtils";
-import HandleSessionStart from "../../../../atoms/checkout-handle-session-start";
-import { sendGAEvent } from "@next/third-parties/google";
-import { createJimmyKey } from "@/utils/jimmyKeyUtils";
+import { useSession } from "@/context/SessionContext";
 import { emergencyStartSession } from "@/utils/emergencySessionStart";
-import { useTracking } from "@/context//TrackingContext";
+import { encryptCreditCard } from "@/utils/encryptUtils";
+import { sendGAEvent } from "@next/third-parties/google";
+import { useRouter } from "next/navigation";
+import { delay } from "@/utils/delay";
+import PromotionTimer from "../PromotionTimer";
+import SectionTitle, { IconType } from "../SectionTitle";
+import QuantityInfo from "./QuantityInfo";
+import CustomerInfo from "./CustomerInfo";
+import ShippingInfo from "./ShippingInfo";
+import PaymentInfo from "./PaymentInfo";
 
 type Props = {
   info: CheckoutPageType;
 };
 
+// Due to technical test time constraints, only implementing the layout structure and form validations 
 const CheckoutForm = ({ info }: Props) => {
-  const router = useRouter();
-  const { sessionId, setSessionId, confirmOrder } = useSession();
   const { ffVid, hitId } = useTracking();
+  const { sessionId, setSessionId, confirmOrder } = useSession();
   const [queryString, setQueryString] = useState<string>("");
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const queryObj: { [key: string]: string | string[] } = {};
-
-    searchParams.forEach((value, key) => {
-      if (queryObj[key]) {
-        if (Array.isArray(queryObj[key])) {
-          (queryObj[key] as string[]).push(value);
-        } else {
-          queryObj[key] = [queryObj[key] as string, value];
-        }
-      } else {
-        queryObj[key] = value;
-      }
-    });
-
-    const encoded = Object.entries(queryObj)
-      .map(([key, value]) => {
-        if (Array.isArray(value)) {
-          return value
-            .map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
-            .join("&");
-        }
-        return `${encodeURIComponent(key)}=${encodeURIComponent(
-          value as string
-        )}`;
-      })
-      .join("&");
-
-    setQueryString(encoded);
-  }, []);
+  const router = useRouter();
 
   const [loading, setLoading] = useState("");
   const [showPop, setShowPop] = useState(false);
@@ -77,6 +45,7 @@ const CheckoutForm = ({ info }: Props) => {
     productOfferId: `${info.product.offerId2}`,
     productStickyId: `${info.product.stickyId2}`,
   });
+
 
   const initialCustomerInfo: CustomerInfoType = {
     sessionId: sessionId || "",
@@ -429,72 +398,34 @@ const CheckoutForm = ({ info }: Props) => {
 
   return (
     <>
-      <HandleSessionStart
-        info={info}
-        setCustomerInfo={setCustomerInfo}
-        product={product}
-      />
-      <div className="flex  w-full relative flex-col items-center bg-[#f1f4f8]">
-        <div id="payment-container" />
-        <div className="flex w-full max-w-[1100px] sm:px-4 pb-12 flex-wrap">
-          <div className="flex flex-col w-full  lg:w-1/2 px-2 lg:py-8 pt-4 sm:pt-8 pb-4">
-            <div className="bg-white p-4 rounded-lg border-[1px] border-[#ddd] flex">
-              <DiscountBar
-                product={product.product}
-                info={info}
-                couponActive={customerInfo.couponActive}
-                country={country}
-              />
-            </div>
-            <div className="bg-white p-4 rounded-lg border-[1px] border-[#ddd] mt-4">
-              <QuantitySelector
-                product={product}
-                info={info}
-                setProduct={setProduct}
-                couponActive={customerInfo.couponActive}
-                country={country}
-              />
-            </div>
-            <div className="bg-white p-4 rounded-lg border-[1px] border-[#ddd] mt-4 lg:hidden">
-              <MobilePaymentOptions firePaypal={firePaypal} loading={loading} />
-            </div>
-            <div className="bg-white p-4 rounded-lg border-[1px] border-[#ddd] mt-4">
-              <CustomerInfo formik={formik} />
-            </div>
+    <HandleSessionStart
+      info={info}
+      setCustomerInfo={() => {}}
+      product={product}
+    />
+    <div className="w-[53%] flex flex-col float-left relative pt-[3.125rem] pr-[3.125rem] pb-[4.375rem] pl-0 bg-white">
+      <PromotionTimer />
+      <div className="flex flex-col mt-10">
+        <QuantityInfo product={product} info={info} setProduct={() => {}} couponActive country="US"/>
+        <CustomerInfo formik={formik} country="US" />
+        <ShippingInfo formik={formik} />
+        <PaymentInfo formik={formik} />
+
+        <button
+            className="flex items-center justify-center w-full h-[75px] bg-[#00af3a] text-[1.75rem] text-white border border-[#77d496] rounded-[5px] font-inter font-bold shadow-[1px_1px_#00a04a] mt-5 cursor-pointer outline-none px-6 hover:bg-[#009932] hover:shadow-[2px_2px_#008b2f] transition-all duration-200"
+            type="button"
+          >
+            <span className="mr-4">Complete Checkout</span>
+            <img src="/images/btn-arw.png" alt="Arrow Icon" className="w-[24px] h-[24px]" />
+          </button>
+          
+          <div className="mt-10 w-full">
+            <img src="/images/guaranty-seal.jpg" alt="" className="w-full h-auto" />
           </div>
-          <div className="flex flex-col  w-full  lg:w-1/2 px-2 lg:py-8">
-            <div className="bg-white p-4 rounded-lg border-[1px] border-[#ddd] ">
-              <PaymentOptions
-                info={info}
-                product={product}
-                formik={formik}
-                loading={loading}
-                firePaypal={firePaypal}
-                country={country}
-                setCountry={setCountry}
-              />
-            </div>
-          </div>
-        </div>
-        <CheckoutCouponPop
-          info={info}
-          activateCoupon={activateCoupon}
-          showPop={showPop}
-          setShowPop={setShowPop}
-          formik={formik}
-          initialCustomerInfo={initialCustomerInfo}
-          showPaypalPop={showPaypalPop}
-          loading={loading}
-        />
-        <PaypalPop
-          info={info}
-          showPaypalPop={showPaypalPop}
-          setShowPaypalPop={setShowPaypalPop}
-          setLoading={setLoading}
-          firePaypal={firePaypal}
-        />
       </div>
+    </div>
     </>
+
   );
 };
 

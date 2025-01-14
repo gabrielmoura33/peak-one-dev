@@ -1,12 +1,13 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { SelectHTMLAttributes } from "react";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
+  options: { value: string; label: string }[];
   error?: string;
   touched?: boolean;
 }
 
-export const TextInput = ({ label, className, error, touched, ...props }: InputProps) => {
+export const SelectInput = ({ label, options, className, error, touched, ...props }: SelectProps) => {
   return (
     <div className="mb-4">
       {label && (
@@ -14,13 +15,18 @@ export const TextInput = ({ label, className, error, touched, ...props }: InputP
           {label}
         </label>
       )}
-      <input
-        type="text"
+      <select
         className={`w-full h-[50px] p-[3px_8px] text-[0.875rem] leading-[1.375rem] bg-white border border-solid border-[#a7abad] rounded-[5px] text-[#222] font-normal font-sans transition-all duration-200 ease-out focus:bg-white focus:border-[#51cbee] focus:shadow-[0_0_5px_#51cbee] focus:outline-none ${
           touched && error ? 'border-red-500' : ''
         } ${className}`}
         {...props}
-      />
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
       {touched && error && (
         <p className="text-red-500 text-xs mt-1">{error}</p>
       )}
