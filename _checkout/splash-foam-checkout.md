@@ -1,6 +1,6 @@
 ---
 slug: "checkout"
-template: "2"
+template: "1"
 funnelFlux: 'var fluxDefaults = {
   p: "2psk5ffK2Q4T",
   f: "2nKLCwO4hgIO"

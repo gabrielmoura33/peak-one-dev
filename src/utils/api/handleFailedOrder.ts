@@ -1,4 +1,4 @@
-import { adminDb } from "../../../../firebaseAdmin";
+import { adminDb } from "../../../firebaseAdmin";
 import sendSlackMessage from "./sendSlackApiHelper";
 import { SessionDataType } from "@/interfaces/sessionData";
 import { kv } from "@vercel/kv";

@@ -1,7 +1,7 @@
 import { kv } from "@vercel/kv";
 import { createShopifyOrder } from "@/utils/shopifyConnector";
 import { SessionDataType } from "@/interfaces/sessionData";
-import { adminDb } from "../../../../firebaseAdmin";
+import { adminDb } from "../../../firebaseAdmin";
 import sendSlackMessage from "@/utils/api/sendSlackApiHelper";
 import { trackOrder } from "./mixpanelTracking";
 
